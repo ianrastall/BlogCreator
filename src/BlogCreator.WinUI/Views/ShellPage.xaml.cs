@@ -14,7 +14,7 @@ public sealed partial class ShellPage : Page
     {
         InitializeComponent();
 
-        ViewModel = ((App)Application.Current).Host.Services.GetRequiredService<ShellViewModel>();
+        ViewModel = ((App)Microsoft.UI.Xaml.Application.Current).Host.Services.GetRequiredService<ShellViewModel>();
         DataContext = ViewModel;
 
         Loaded += ShellPage_Loaded;
