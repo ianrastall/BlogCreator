@@ -84,8 +84,8 @@
                         TextWrapping="NoWrap"
                         FontFamily="Cascadia Mono"
                         FontSize="15"
-                        HorizontalScrollBarVisibility="Auto"
-                        VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
                         Text="{Binding SelectedPost.Body, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </Border>
