@@ -1,0 +1,29 @@
+name: Build BlogCreator
+
+on:
+  push:
+    branches: [ main, bootstrap ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore BlogCreator.slnx
+
+      - name: Build
+        run: dotnet build BlogCreator.slnx --configuration Release --no-restore /p:Platform=x64
+
+      - name: Test
+        run: dotnet test tests/BlogCreator.Tests/BlogCreator.Tests.csproj --configuration Release --no-build /p:Platform=x64

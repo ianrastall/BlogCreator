@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BlogCreator.Core/BlogCreator.Core.csproj" />
+    <Project Path="src/BlogCreator.Application/BlogCreator.Application.csproj" />
+    <Project Path="src/BlogCreator.Infrastructure/BlogCreator.Infrastructure.csproj" />
+    <Project Path="src/BlogCreator.WinUI/BlogCreator.WinUI.csproj">
+      <Platform Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BlogCreator.Tests/BlogCreator.Tests.csproj" />
+  </Folder>
+</Solution>
