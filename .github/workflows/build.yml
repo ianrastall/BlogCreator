@@ -31,4 +31,18 @@ jobs:
         run: dotnet test tests/BlogCreator.Tests/BlogCreator.Tests.csproj -c Release --no-restore
 
       - name: Build WinUI app
-        run: dotnet build src/BlogCreator.WinUI/BlogCreator.WinUI.csproj -c Release --no-restore -p:Platform=x64 --verbosity quiet
+        id: winui-build
+        shell: pwsh
+        run: |
+          dotnet build src/BlogCreator.WinUI/BlogCreator.WinUI.csproj -c Release --no-restore -p:Platform=x64 *> winui-build.log
+          $buildExitCode = $LASTEXITCODE
+          Get-Content winui-build.log | Select-String -Pattern "error" | Select-Object -First 30
+          exit $buildExitCode
+
+      - name: Upload WinUI build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: winui-build-log
+          path: winui-build.log
+          if-no-files-found: error
