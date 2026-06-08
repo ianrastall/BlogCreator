@@ -19,6 +19,7 @@ public sealed class MarkdownRenderer : IMarkdownRenderer
             <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
+              <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: file: https: http:; style-src 'unsafe-inline'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
               <style>
                 :root { color-scheme: dark; }
                 body {

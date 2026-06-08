@@ -25,4 +25,28 @@ public sealed class ShellViewModelTests
         Assert.Equal(2, viewModel.Posts.Count);
         Assert.Equal("Untitled post", viewModel.SelectedPost?.Title);
     }
+
+    [Fact]
+    public void SelectedPostChange_NotifiesCommandAvailability()
+    {
+        var viewModel = new ShellViewModel(new MarkdownRenderer());
+        var originalPost = viewModel.SelectedPost;
+        int saveDraftNotifications = 0;
+        int publishNotifications = 0;
+
+        viewModel.SaveDraftCommand.CanExecuteChanged += (_, _) => saveDraftNotifications++;
+        viewModel.PublishCommand.CanExecuteChanged += (_, _) => publishNotifications++;
+
+        viewModel.SelectedPost = null;
+
+        Assert.False(viewModel.SaveDraftCommand.CanExecute(null));
+        Assert.False(viewModel.PublishCommand.CanExecute(null));
+
+        viewModel.SelectedPost = originalPost;
+
+        Assert.True(viewModel.SaveDraftCommand.CanExecute(null));
+        Assert.True(viewModel.PublishCommand.CanExecute(null));
+        Assert.Equal(2, saveDraftNotifications);
+        Assert.Equal(2, publishNotifications);
+    }
 }

@@ -242,7 +242,22 @@ dotnet build src/BlogCreator.WinUI/BlogCreator.WinUI.csproj -c Debug --no-restor
 ### Run
 
 ```powershell
-.\src\BlogCreator.WinUI\bin\Debug\net10.0-windows10.0.19041.0\win-x64\BlogCreator.WinUI.exe
+.\src\BlogCreator.WinUI\bin\x64\Debug\net10.0-windows10.0.19041.0\win-x64\BlogCreator.WinUI.exe
+```
+
+### Publish a taskbar-ready app
+
+This creates a root-level `Build` folder containing `BlogCreator.WinUI.exe` as a self-contained single-file executable with symbol files suppressed.
+
+```powershell
+.\Publish-BlogCreator.ps1
+.\Build\BlogCreator.WinUI.exe
+```
+
+Equivalent raw command:
+
+```powershell
+dotnet publish .\src\BlogCreator.WinUI\BlogCreator.WinUI.csproj -c Release -r win-x64 --self-contained true -o .\Build /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=false /p:IncludeNativeLibrariesForSelfExtract=true /p:DebugType=None /p:DebugSymbols=false
 ```
 
 ### Required completion check

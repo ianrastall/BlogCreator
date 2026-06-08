@@ -8,4 +8,5 @@
 *.log
 TestResults/
 artifacts/
+Build/
 .tmp-build/

@@ -52,6 +52,8 @@ public partial class ShellViewModel : ObservableObject
             newValue.PropertyChanged += SelectedPost_PropertyChanged;
         }
 
+        SaveDraftCommand.NotifyCanExecuteChanged();
+        PublishCommand.NotifyCanExecuteChanged();
         RefreshPreview();
     }
 

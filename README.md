@@ -32,8 +32,15 @@ dotnet build BlogCreator.slnx -c Debug /p:Platform=x64
 dotnet test tests/BlogCreator.Tests/BlogCreator.Tests.csproj
 ```
 
-Run after building:
+Run the debug build:
 
 ```powershell
-.\src\BlogCreator.WinUI\bin\Debug\net10.0-windows10.0.19041.0\win-x64\BlogCreator.WinUI.exe
+.\src\BlogCreator.WinUI\bin\x64\Debug\net10.0-windows10.0.19041.0\win-x64\BlogCreator.WinUI.exe
+```
+
+Publish a taskbar-ready single executable into the root `Build` folder:
+
+```powershell
+.\Publish-BlogCreator.ps1
+.\Build\BlogCreator.WinUI.exe
 ```

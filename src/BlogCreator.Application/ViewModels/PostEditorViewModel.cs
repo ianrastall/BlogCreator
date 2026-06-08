@@ -81,6 +81,7 @@ public partial class PostEditorViewModel : ObservableObject
             }
         }
 
-        return builder.ToString().Trim('-');
+        string slug = builder.ToString().Trim('-');
+        return slug.Length == 0 ? "untitled-post" : slug;
     }
 }
